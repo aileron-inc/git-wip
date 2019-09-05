@@ -1,22 +1,28 @@
-#!/usr/bin/env zsh
-if [ $# -eq 0 ]; then
-  echo "Usage:"
-  echo "git wip (branch-name) (issue-number)"
+#!/usr/bin/env ruby
+
+if ARGV.empty?
+  puts 'Usage:'
+  puts 'git wip [branch-name] [issue-number]'
   exit 2
-fi
-issue_number=''
-issue_title=''
-branch_name=$1
-if [ $# -eq 2 ]; then
-  issue_number="#$2"
-  branch_name="$1/$2"
-  issue_title=$(hub issue | grep $2 | xargs)
-fi
+end
 
-git pull origin develop
-git checkout -b $branch_name
-git commit --allow-empty -m "[ci skip][init]$issue_number"
-git push -u origin HEAD
+if ARGV[1]
+  issue_number = "##{ARGV[1]}"
+  branch_name = "#{ARGV[0]}/#{ARGV[1]}"
+  issue_title = `hub issue | grep #{ARGV[1]} | xargs`
+else
+  issue_number = ''
+  issue_title = ''
+  branch_name = ARGV[0]
+end
 
-pull_request_title="[WIP] $issue_title"
-open $(echo "$pull_request_title" | hub pull-request -F -)
+<<`SHELL`
+  git pull origin develop
+  git checkout -b #{branch_name}
+  git commit --allow-empty -m "[ci skip][init]#{issue_number}"
+  git push -u origin HEAD
+SHELL
+
+pull_request_title = "[WIP] #{issue_title}"
+
+`open $(echo "#{pull_request_title}" | hub pull-request -F -)`
