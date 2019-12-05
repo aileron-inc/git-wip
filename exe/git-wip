@@ -23,6 +23,6 @@ end
   git push -u origin HEAD
 SHELL
 
-pull_request_title = "[WIP] #{issue_title}"
+pull_request_title = "#{issue_title}"
 
-`open $(echo "#{pull_request_title}" | hub pull-request -F -)`
+`open $(echo "#{pull_request_title}" | hub pull-request --draft --file -)`
