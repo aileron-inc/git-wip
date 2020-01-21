@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Git
   module Wip
-    VERSION = '0.2'.freeze
+    VERSION = '0.3'
   end
 end
 
@@ -12,12 +14,12 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Automation create ( work in progress pull-request )'
   spec.description   = 'Automation create ( work in progress pull-request )'
-  spec.homepage      = "https://github.com/aileron-inc/git-wip/"
+  spec.homepage      = 'https://github.com/aileron-inc/git-wip/'
   spec.license       = 'MIT'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = "https://github.com/aileron-inc/git-wip/"
-  spec.metadata['changelog_uri'] = "https://github.com/aileron-inc/git-wip/CHANGELOG.md"
+  spec.metadata['source_code_uri'] = 'https://github.com/aileron-inc/git-wip/'
+  spec.metadata['changelog_uri'] = 'https://github.com/aileron-inc/git-wip/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

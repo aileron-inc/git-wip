@@ -7,22 +7,19 @@ if ARGV.empty?
 end
 
 if ARGV[1]
-  issue_number = "##{ARGV[1]}"
   branch_name = "#{ARGV[0]}/#{ARGV[1]}"
+  issue_number = "##{ARGV[1]}"
   issue_title = `hub issue | grep #{ARGV[1]} | xargs`
 else
-  issue_number = ''
-  issue_title = ''
   branch_name = ARGV[0]
+  issue_number = ''
+  issue_title = "Fix #{branch_name}"
 end
 
 <<`SHELL`
   git pull origin develop
   git checkout -b #{branch_name}
-  git commit --allow-empty -m "[ci skip][init]#{issue_number}"
+  git commit --allow-empty -m "#{issue_number} [ci skip][init]"
   git push -u origin HEAD
 SHELL
-
-pull_request_title = "#{issue_title}"
-
-`open $(echo "#{pull_request_title}" | hub pull-request --draft --file -)`
+`open $(echo "#{issue_title}" | hub pull-request --draft --file -)`
