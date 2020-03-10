@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
-module Git
-  module Wip
-    VERSION = '0.3'
-  end
-end
-
 Gem::Specification.new do |spec|
   spec.name          = 'git-wip'
-  spec.version       = Git::Wip::VERSION
+  spec.version       = '0.4'
   spec.authors       = ['aileron']
   spec.email         = ['aileron.cc@gmail.com']
 
