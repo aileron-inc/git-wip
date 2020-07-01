@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'git-wip'
-  spec.version       = '0.4'
+  spec.version       = '0.5'
   spec.authors       = ['aileron']
   spec.email         = ['aileron.cc@gmail.com']
 

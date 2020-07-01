@@ -7,8 +7,8 @@ if ARGV.empty?
 end
 
 if ARGV[1]
-  branch_name = "#{ARGV[0]}/#{ARGV[1]}"
   issue_number = "##{ARGV[1]}"
+  branch_name = "#{ARGV[1]}-#{ARGV[0]}"
   issue_title = `hub issue | grep #{ARGV[1]} | xargs`
 else
   branch_name = ARGV[0]
