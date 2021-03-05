@@ -9,17 +9,16 @@ end
 if ARGV[1]
   issue_number = "##{ARGV[1]}"
   branch_name = "#{ARGV[1]}-#{ARGV[0]}"
-  issue_title = `hub issue | grep #{ARGV[1]} | xargs`
+  issue_title = `hub issue | grep #{ARGV[1]}`.strip
 else
   branch_name = ARGV[0]
   issue_number = ''
   issue_title = "Fix #{branch_name}"
 end
-
 <<`SHELL`
   git pull --rebase
   git checkout -b #{branch_name}
   git commit --allow-empty -m "#{issue_number} [ci skip][init]"
   git push -u origin HEAD
 SHELL
-`open $(echo "#{issue_title}" | hub pull-request --draft --file -)`
+`open $(echo "#{issue_title}\n\n#{issue_number}" | hub pull-request --draft --file -)`
